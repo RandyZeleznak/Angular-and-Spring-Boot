@@ -3,10 +3,10 @@ import { SalesPerson } from './sales-person';
 
 @Component({
   selector: 'app-sales-person-list',
-  templateUrl: './sales-person-list.component.html',
+  templateUrl: './sales-person-list-bootstrap.component.html',
   styleUrls: ['./sales-person-list.component.css'],
 })
-export class salesPersonListComponent implements OnInit {
+export class SalesPersonListComponent implements OnInit {
   // create an array of objects
   salesPersonList: SalesPerson[] = [
     new SalesPerson('Joe', 'Bonamassa', 'joe.bonamassa@gmail.com', 2500),
