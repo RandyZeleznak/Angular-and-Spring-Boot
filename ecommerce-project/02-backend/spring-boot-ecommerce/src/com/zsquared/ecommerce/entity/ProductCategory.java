@@ -1,9 +1,8 @@
-package main.java.com.zsquared.ecommerce.entity;
+package com.zsquared.ecommerce.entity;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.annotation.processing.Generated;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Set;

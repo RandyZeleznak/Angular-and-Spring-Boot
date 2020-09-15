@@ -1,9 +1,9 @@
-package main.java.com.zsquared.ecommerce.entity;
+package com.zsquared.ecommerce.entity;
 
 import lombok.Data;
 
 import javax.persistence.Entity;
-import org.hibernate.annotations.CreateTimestamp;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibarnate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
