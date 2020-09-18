@@ -3,5 +3,5 @@ package com.zsquared.ecommerce.dao;
 import com.zsquared.ecommerce.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ProductRepository extends JpaRespository<Product, Long> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
 }

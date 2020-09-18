@@ -1,21 +1,21 @@
 package com.zsquared.ecommerce.entity;
 
 import lombok.Data;
-
-import javax.persistence.Entity;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibarnate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+
+
 
 @Entity
 @Table(name="product")
 @Data
 public class Product {
     @Id
-    @GeneratedValue(strategu = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 

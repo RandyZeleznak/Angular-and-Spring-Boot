@@ -3,8 +3,7 @@ package com.zsquared.ecommerce.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -16,7 +15,7 @@ public class ProductCategory {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private long id;
+    private Long id;
 
     @Column(name="category_name")
     private String categoryName;
