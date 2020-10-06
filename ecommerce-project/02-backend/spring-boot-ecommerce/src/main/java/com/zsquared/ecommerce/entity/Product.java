@@ -8,20 +8,20 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
-
-
 @Entity
 @Table(name="product")
 @Data
-public class Product {
+public class Product{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
+
     @ManyToOne
-    @JoinColumn(name = "category_id", nullable=false)
-    private  ProductCategory category;
+    @JoinColumn(name = "category_id", nullable = false)
+    private ProductCategory category;
 
     @Column(name = "sku")
     private String sku;
@@ -36,7 +36,7 @@ public class Product {
     private BigDecimal unitPrice;
 
     @Column(name = "image_url")
-    private String imageUrl;
+    private  String imageUrl;
 
     @Column(name = "active")
     private boolean active;
@@ -53,3 +53,5 @@ public class Product {
     private Date lastUpdated;
 
 }
+
+
