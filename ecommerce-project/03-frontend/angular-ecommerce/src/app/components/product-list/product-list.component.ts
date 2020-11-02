@@ -35,8 +35,10 @@ export class ProductListComponent implements OnInit {
     }
 
   // Now get products for captured 'id'
-    this.productService.getProductList(this.currentCategoryId).subscribe((data) => {
+    this.productService.getProductList(this.currentCategoryId).subscribe(
+      data => {
       this.products = data;
-    });
+      }
+    )
   }
 }
