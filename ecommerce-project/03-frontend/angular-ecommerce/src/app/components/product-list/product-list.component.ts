@@ -3,6 +3,8 @@ import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/common/product';
 import { ActivatedRoute } from '@angular/router';
 import { stringify } from '@angular/compiler/src/util';
+import { CartService } from 'src/app/services/cart.service';
+import { CartItem } from 'src/app/common/cart-item';
 
 @Component({
   selector: 'app-product-list',
@@ -20,14 +22,11 @@ export class ProductListComponent implements OnInit {
   thePageNumber: number = 1;
   thePageSize: number = 5;
   theTotalElements: number = 0;
-  
-
-
-
-
+  previousKeyword = null;
 
 
   constructor(private productService: ProductService,
+              private cartService: CartService, 
               private route: ActivatedRoute) {}
 
   ngOnInit() {
@@ -49,14 +48,26 @@ export class ProductListComponent implements OnInit {
 
   handleSearchProducts(){
 
+    
     const theKeyword: string = this.route.snapshot.paramMap.get('keyword');
 
+    // if we have a different keyword than previous keyword
+    // set thePageNumber to 1
+
+    if(this.previousKeyword != theKeyword){
+      this.thePageNumber = 1;
+    }
+
+    this.previousKeyword = theKeyword;
+
+    console.log(`keyword=${theKeyword}, thePageNumber=${this.thePageNumber}`);
+
+
+
     // Now search for products containing the given keyword
-    this.productService.searchProducts(theKeyword).subscribe(
-      data => {
-        this.products = data;
-      }
-    )
+    this.productService.searchProductsPaginate(this.thePageNumber - 1,
+                                              this.thePageSize,
+                                              theKeyword).subscribe(this.processResult());
   }
 
   handleListProducts(){
@@ -108,4 +119,10 @@ this.productService.getProductListPaginate   (this.thePageNumber - 1,
       this.listProducts;
   }
 
+  addToCart(theProduct: Product){
+    console.log(`Adding to cart: ${theProduct.name}, ${theProduct.unitPrice}`);
+    
+    const theCartItem = new CartItem(theProduct);
+    this.cartService.addToCart(theCartItem);
+  }
 }

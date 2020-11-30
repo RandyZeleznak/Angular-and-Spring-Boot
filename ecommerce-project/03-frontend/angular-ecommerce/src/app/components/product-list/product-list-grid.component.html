@@ -19,7 +19,7 @@
             </a>
             
             <div class="price">{{tempProduct.unitPrice | currency:'USD'}}</div>
-            <a href = "#" class="primary-btn">Add to Cart</a>
+            <button (click)="addToCart(tempProduct)" class="btn btn-primary btn-sm">Add to Cart</button>
           </div>
       </div>
 
@@ -27,7 +27,7 @@
       <div *ngIf="products?.length==0" class="alert alert-warning col-md-12" role="alert">
         NO PRODUCTS FOUND!
       </div>
-    
+    </div>
 
       <!-- Begin Footer Section-->
       <div class="footer-pagination">
@@ -39,11 +39,13 @@
                 <ngb-pagination [(page)]="thePageNumber"
                                 [pageSize]="thePageSize"
                                 [collectionSize]="theTotalElements"
+                                [maxSize]="5"
+                                [boundaryLinks]="true"
                                 (pageChange)="listProducts()">
                 </ngb-pagination>
               </div>
               
-              <div>
+              
                 <div class="col-md-3 mt-2" style="text-align: right;">
                   <span class="mr-2">Page Size </span>
                   <select (change)="updatePageSize($event.target.value)">
@@ -54,13 +56,11 @@
                   </select>       
                 </div>
               
-
               </div>
 
             </div>
           </div>
         </div>
-      </div>
       <!-- End Footer Section -->
 
 
