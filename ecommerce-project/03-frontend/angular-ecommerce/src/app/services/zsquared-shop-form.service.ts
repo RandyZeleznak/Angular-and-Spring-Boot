@@ -12,7 +12,7 @@ import { SearchComponent } from '../components/search/search.component';
 export class ZsquaredShopFormService {
 
   private countriesUrl = 'http://localhost:8080/api/countries';
-  private stateUrl = 'http://localhost:8080/api/state';
+  private statesUrl = 'http://localhost:8080/api/states';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -23,9 +23,9 @@ export class ZsquaredShopFormService {
   }
 
   getStates(theCountryCode: string): Observable<State[]>{
-    const searchStateUrl = `{this.statesUrl}/search/findByCountryCode?code=${theCountryCode}`;
+    const searchStatesUrl = `{this.statesUrl}/search/findByCountryCode?code=${theCountryCode}`;
 
-    return this.httpClient.get<GetResponseStates>(searchStateUrl).pipe(
+    return this.httpClient.get<GetResponseStates>(searchStatesUrl).pipe(
       map(response => response._embedded.states)
     );
   }
