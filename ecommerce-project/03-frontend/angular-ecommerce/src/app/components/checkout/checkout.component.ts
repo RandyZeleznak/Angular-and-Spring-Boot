@@ -4,6 +4,7 @@ import { ZsquaredShopFormService } from 'src/app/services/zsquared-shop-form.ser
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
 import { ZsquaredShopValidators } from 'src/app/validators/zsquared-shop-validators';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-checkout',
@@ -27,9 +28,12 @@ export class CheckoutComponent implements OnInit {
   
   
   constructor(private formBuilder: FormBuilder,
-              private zsquaredShopFormService: ZsquaredShopFormService) { }
+              private zsquaredShopFormService: ZsquaredShopFormService,
+              private cartService: CartService) { }
 
   ngOnInit(): void {
+
+    this.reviewCartDetails();
     
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
@@ -119,6 +123,19 @@ export class CheckoutComponent implements OnInit {
       }
     );
   }
+  reviewCartDetails() {
+    
+    // subscribe to cartService.totalQuantity
+    this.cartService.totalQuantity.subscribe(
+        totalQuantity => this.totalQuantity = totalQuantity
+    );
+    
+    // subscribe to cartService.totalPrice
+    this.cartService.totalPrice.subscribe(
+      totalPrice => this.totalPrice = totalPrice
+  );
+
+  }
 
   get firstName() { return this.checkoutFormGroup.get('customer.firstName'); }
   get lastName() { return this.checkoutFormGroup.get('customer.lastName'); }
@@ -127,17 +144,17 @@ export class CheckoutComponent implements OnInit {
   get shippingAddressStreet() { return this.checkoutFormGroup.get('shippingAddress.street'); }
   get shippingAddressCity() { return this.checkoutFormGroup.get('shippingAddress.city'); }
   get shippingAddressState() { return this.checkoutFormGroup.get('shippingAddress.state'); }
-  get shippingAddressZipCode() { return this.checkoutFormGroup.get('shippingAddress.zipcode'); }
+  get shippingAddressZipCode() { return this.checkoutFormGroup.get('shippingAddress.zipCode'); }
   get shippingAddressCountry() { return this.checkoutFormGroup.get('shippingAddress.country'); }
 
   get billingAddressStreet() { return this.checkoutFormGroup.get('billingAddress.street'); }
   get billingAddressCity() { return this.checkoutFormGroup.get('billingAddress.city'); }
   get billingAddressState() { return this.checkoutFormGroup.get('billingAddress.state'); }
-  get billingAddressZipCode() { return this.checkoutFormGroup.get('billingAddress.zipcode'); }
+  get billingAddressZipCode() { return this.checkoutFormGroup.get('billingAddress.zipCode'); }
   get billingAddressCountry() { return this.checkoutFormGroup.get('billingAddress.country'); }
 
   get creditCardType() { return this.checkoutFormGroup.get('creditCard.cardType'); }
-  get creditCardNameOnCard() { return this.checkoutFormGroup.get('creditCard.cardName'); }
+  get creditCardNameOnCard() { return this.checkoutFormGroup.get('creditCard.nameOnCard'); }
   get creditCardNumber() { return this.checkoutFormGroup.get('creditCard.cardNumber'); }
   get creditCardSecurityCode() { return this.checkoutFormGroup.get('creditCard.securityCode'); }
 
