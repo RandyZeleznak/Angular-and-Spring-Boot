@@ -25,7 +25,7 @@ public class OrderItem {
     @Column(name="quantity")
     private int quantity;
 
-    @Column(name="product id")
+    @Column(name="product_id")
     private Long productId;
 
     @ManyToOne
