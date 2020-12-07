@@ -251,12 +251,12 @@ export class CheckoutComponent implements OnInit {
     this.checkoutService.placeOrder(purchase).subscribe(
       {
         next: response => {
-          alert:(`Your order has been received. \n Order Tracking number: ${response.orderTrackingNumber}`);
+          alert(`Your order has been received. \n Order Tracking number: ${response.orderTrackingNumber}`);
           // reset cart
           this.resetCart();
         },
         error: err => {
-          alert:(`There was an error : ${err.message}`);
+          alert(`There was an error : ${err.message}`);
 
         }
       }

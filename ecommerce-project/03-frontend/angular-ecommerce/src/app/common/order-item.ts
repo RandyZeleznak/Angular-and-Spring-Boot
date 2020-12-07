@@ -1,4 +1,8 @@
+import { CartItem } from './cart-item'
+
 export class OrderItem {
+
+
   imageUrl: string;
   unitPrice: number;
   quanity: number;
@@ -6,9 +10,9 @@ export class OrderItem {
 
   constructor(cartItem: CartItem){
     this.imageUrl = cartItem.imageUrl;
-    this.quanity = cartItem.quanity;
-    this.unitPrice = cartItem,this.unitPrice;
-    this.productId = cartItem.productId;
+    this.quanity = cartItem.quantity;
+    this.unitPrice = cartItem.unitPrice;
+    this.productId = cartItem.id;
     
   }
 }
